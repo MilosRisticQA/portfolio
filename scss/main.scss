@@ -1,8 +1,8 @@
 $primary-color: #546fba;
-$secondary-color: #f8f8f8;
+$secondary-color: #dab804;
 $show-home-image: true;
 $home-image: url(/dist/img/background.jpg);
-$background-opacity: 0.3;
+$background-opacity: 0.6;
 
 @mixin easeOut {
   transition: all 0.5s ease-out;
@@ -134,6 +134,26 @@ $background-opacity: 0.3;
     &.show {
       //Slide from the right
       transform: translate3d(0, 0, 0);
+    }
+
+    &.current > a {
+      color: $secondary-color;
+    }
+  }
+
+  .nav-link {
+    display: inline-block;
+    position: relative;
+    font-size: 30px;
+    text-transform: uppercase;
+    padding: 1rem 0;
+    font-weight: 300;
+    color: #f8f8f8;
+    text-decoration: none;
+    @include easeOut;
+
+    &:hover {
+      color: $secondary-color;
     }
   }
 }
