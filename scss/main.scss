@@ -1,5 +1,5 @@
 $primary-color: #546fba;
-$secondary-color: #dab804;
+$secondary-color: #f5ca00;
 $show-home-image: true;
 $home-image: url(/dist/img/background.jpg);
 $background-opacity: 0.6;
@@ -46,6 +46,12 @@ $background-opacity: 0.6;
     background: #f8f8f8;
     @include easeOut;
     z-index: 4;
+  }
+
+  .btn-line {
+    &:hover {
+      background-color: $secondary-color;
+    }
   }
   // Rotate Into X with menu lines
   &.close {
@@ -173,7 +179,7 @@ $background-opacity: 0.6;
 body {
   @include background;
   background: $primary-color;
-  color: #444;
+  color: #334652;
   height: 100%;
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -189,20 +195,26 @@ h3 {
 
   &.lg-heading {
     // &.lg heading --> h1.lg-heading, h2.lg-heading etc
-    font-size: 6rem; // 6 * defualt px value (here's 16px)
+    font-size: 7rem; // 6 * defualt px value (here's 16px)
+    text-align: center;
+    position: relative;
+    padding: 0;
+    margin: 0;
   }
 
   &.sm-heading {
     margin-bottom: 2rem;
-    padding: 2rem 1rem;
+    padding: 0;
     //background: rgba(lighten($secondary-color, 2), 0.3);
+    position: relative;
+    text-align: center;
   }
 }
 
 //Links
 
 a {
-  color: #444;
+  color: #334652;
   text-decoration: none;
 }
 
@@ -226,6 +238,9 @@ main {
 
   .icons {
     margin-top: 1rem;
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
 
     a {
       padding: 0.4rem;
@@ -241,7 +256,7 @@ main {
     overflow: hidden; // never to have scrollbars
     h1 {
       // each h1 with the id='home'
-      margin-top: 20vh; // vh - view point height
+      //margin-top: 20vh; // vh - view point height
     }
   }
 }

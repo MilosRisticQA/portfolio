@@ -12,6 +12,8 @@
     background: #f8f8f8;
     transition: all 0.5s ease-out;
     z-index: 4; }
+  .menu-btn .btn-line:hover {
+    background-color: #f5ca00; }
   .menu-btn.close {
     transform: rotate(180deg); }
     .menu-btn.close .btn-line:nth-child(1) {
@@ -59,14 +61,14 @@
       height: 250px;
       background: url(/dist/img/portrait.jpg);
       border-radius: 50%;
-      border: solid 3px #dab804; }
+      border: solid 3px #f5ca00; }
   .menu .nav-items {
     transform: translate3d(600px, 0, 0);
     transition: all 0.5s ease-out; }
     .menu .nav-items.show {
       transform: translate3d(0, 0, 0); }
     .menu .nav-items.current > a {
-      color: #dab804; }
+      color: #f5ca00; }
   .menu .nav-link {
     display: inline-block;
     position: relative;
@@ -78,7 +80,7 @@
     text-decoration: none;
     transition: all 0.5s ease-out; }
     .menu .nav-link:hover {
-      color: #dab804; }
+      color: #f5ca00; }
 
 .nav-items:nth-child(1) {
   transition-delay: 0.1s; }
@@ -97,7 +99,7 @@
 
 body {
   background: #546fba;
-  color: #444;
+  color: #334652;
   height: 100%;
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -124,15 +126,21 @@ h3 {
   h1.lg-heading,
   h2.lg-heading,
   h3.lg-heading {
-    font-size: 6rem; }
+    font-size: 7rem;
+    text-align: center;
+    position: relative;
+    padding: 0;
+    margin: 0; }
   h1.sm-heading,
   h2.sm-heading,
   h3.sm-heading {
     margin-bottom: 2rem;
-    padding: 2rem 1rem; }
+    padding: 0;
+    position: relative;
+    text-align: center; }
 
 a {
-  color: #444;
+  color: #334652;
   text-decoration: none; }
 
 header {
@@ -141,22 +149,23 @@ header {
   width: 100%; }
 
 .text-secondary {
-  color: #dab804; }
+  color: #f5ca00; }
 
 main {
   padding: 4rem;
   height: 100%; }
   main .icons {
-    margin-top: 1rem; }
+    margin-top: 1rem;
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem; }
     main .icons a {
       padding: 0.4rem; }
       main .icons a:hover {
-        color: #dab804;
+        color: #f5ca00;
         transition: all 0.5s ease-out; }
   main#home {
     overflow: hidden; }
-    main#home h1 {
-      margin-top: 20vh; }
 
 @media screen and (max-width: 768px) {
   main {
