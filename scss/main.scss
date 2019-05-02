@@ -1,3 +1,5 @@
+@import "mobile";
+
 $primary-color: #546fba;
 $secondary-color: #dab804;
 $show-home-image: true;
@@ -243,5 +245,27 @@ main {
       // each h1 with the id='home'
       margin-top: 20vh; // vh - view point height
     }
+  }
+}
+
+//Media Query Mixins
+@mixin mediaSm {
+  @media screen and (max-width: 500px) {
+    @content;
+  }
+}
+@mixin mediaMd {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+@mixin mediaLg {
+  @media screen and (min-width: 769px) and (max-width: 1170px) {
+    @content;
+  }
+}
+@mixin mediaXl {
+  @media screen and (min-width: 1171px) {
+    @content;
   }
 }
