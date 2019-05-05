@@ -229,7 +229,8 @@ header {
 
 main {
   padding: 4rem;
-  height: 100%;
+  //height: 100%;
+  min-height: calc(100vh-60px); //use calc to make a STICKY FOOTER
 
   .icons {
     margin-top: 1rem;
@@ -249,11 +250,102 @@ main {
 
   &#home {
     overflow: hidden; // never to have scrollbars
-    h1 {
-      // each h1 with the id='home'
-      //margin-top: 20vh; // vh - view point height
+    //h1 {
+    // each h1 with the id='home'
+    //margin-top: 20vh; // vh - view point height
+  }
+}
+
+.about-info {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-areas:
+    "bioimage bio bio"
+    "job1 job2 job3";
+  grid-template-columns: repeat(3, 1fr);
+
+  .bio-image {
+    grid-area: bioimage;
+    margin: auto;
+    border-radius: 50%;
+    border: &$secondary-color 3px solid;
+  }
+
+  .bio {
+    grid-area: bio;
+    font-size: 1.5rem;
+  }
+  .job-1 {
+    grid-area: job1;
+  }
+  .job-2 {
+    grid-area: job2;
+  }
+  .job-3 {
+    grid-area: job3;
+  }
+
+  .job {
+    background: lighten($primary-color, 5);
+    padding: 0.5rem;
+    border-bottom: $secondary-color 5px solid;
+  }
+}
+
+//WORK PROJECTS
+
+.projects {
+  display: grid;
+  grid-gap: 0.7rem;
+  grid-template-columns: repeat(3, 1fr);
+
+  img {
+    width: 100%;
+    border: 3px #f8f8f8 solid;
+
+    &:hover {
+      opacity: 0.5;
+      border-color: $secondary-color;
+      @include easeOut;
     }
   }
+}
+
+// Button styles
+
+.btn {
+  display: block; //to be one over the other, but use INLINE-BLOCK to be displayed as one next to the other (styling depends if the image is wide enough to have 2, pne next to each other)
+  padding: 0.5rem 1rem;
+  border: 0;
+  margin-bottom: 0.3rem;
+
+  &:hover {
+    background: $secondary-color;
+    color: set-text-color ($secondary-color);
+  }
+}
+
+//now let's extend this .btn class to .btn-light and .btn-dark
+
+.btn-dark {
+  @extend .btn;
+  background: darken($primary-color, 50);
+  color: #f8f8f8;
+}
+
+.btn-light {
+  @extend .btn;
+  background: lighten($primary-color, 50);
+  color: $primary-color;
+}
+
+#main-footer {
+  text-align: center;
+  padding: 1rem;
+  background: darken($primary-color, 10);
+  color: set-text-color($primary-color);
+  height: 60px;
+  //Checkout .main styling to see how we made STICKY FOOTER
 }
 
 //Media Query Mixins
@@ -280,13 +372,19 @@ main {
 
 //Widescreens
 @include mediaXl {
+  .projects {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 //Desktops and Laptops
 @include mediaLg {
+  .projects {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-//Tablets and Netbooks
+//Tablets and Netbooks    -- IMPORTANT: THIS MOBILE SECTION MUST BE AT THE END OF MAIN.SCSS TO BE PROPERLY DISPLAYED!
 @include mediaMd {
   main {
     align-items: center;
@@ -324,11 +422,28 @@ main {
       height: 150px;
     }
   }
+
+  .about-info {
+    grid-template-areas:
+      "bioimage"
+      "bio"
+      "job1"
+      "job2"
+      "job3";
+
+    grid-template-columns: 1fr;
+  }
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 //Smartphones
 @include mediaSm {
   main#home h1 {
     margin-top: 10vh;
+  }
+  .projects {
+    grid-template-columns: 1fr;
   }
 }
