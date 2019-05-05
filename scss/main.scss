@@ -48,11 +48,6 @@ $background-opacity: 0.6;
     z-index: 4;
   }
 
-  .btn-line {
-    &:hover {
-      background-color: $secondary-color;
-    }
-  }
   // Rotate Into X with menu lines
   &.close {
     transform: rotate(180deg);
