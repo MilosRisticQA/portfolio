@@ -1,8 +1,8 @@
-$primary-color: #546fba;
-$secondary-color: #f5ca00;
+$primary-color: #1b3234;
+$secondary-color: #34afaa;
 $show-home-image: true;
-$home-image: url(/dist/img/background.jpg);
-$background-opacity: 0.6;
+$home-image: url(/dist/img/background.png);
+$background-opacity: 0.3;
 
 @mixin easeOut {
   transition: all 0.5s ease-out;
@@ -13,7 +13,11 @@ $background-opacity: 0.6;
     &#bg-img {
       background: $home-image;
       background-attachment: fixed;
-      background-size: cover;
+      background-repeat: no-repeat;
+      background-size: 500px 300px;
+      background-position: center;
+      background-blend-mode: multiply;
+      z-index: 4;
 
       .overlay {
         position: absolute;
@@ -22,7 +26,8 @@ $background-opacity: 0.6;
         width: 100%;
         height: 100%;
         z-index: -1;
-        background: rgba($primary-color, $background-opacity);
+        //background: rgba($primary-color, $background-opacity);
+        //background: $primary-color;
       }
     }
   }
@@ -38,12 +43,15 @@ $background-opacity: 0.6;
   cursor: pointer;
   @include easeOut;
   z-index: 4;
+  animation-duration: 4s;
+  animation-delay: 5s;
+  animation-iteration-count: 4;
 
   .btn-line {
     width: 28px;
     height: 3px;
     margin: 0 0 5px 0;
-    background: #f8f8f8;
+    background: darken($secondary-color, 15);
     @include easeOut;
     z-index: 4;
   }
@@ -74,7 +82,7 @@ $background-opacity: 0.6;
   position: fixed;
   top: 0;
   width: 100%;
-  opacity: 0.9;
+  //opacity: 0.9;
   visibility: hidden;
   z-index: 2;
 
@@ -98,6 +106,7 @@ $background-opacity: 0.6;
     margin: 0;
     padding: 0;
     background: darken($primary-color, 5);
+    opacity: 0.9;
     list-style: none;
     transform: translate3d(0, -100%, 0);
     @include easeOut;
@@ -110,7 +119,7 @@ $background-opacity: 0.6;
 
   //Branding Side
   &-branding {
-    background: $primary-color;
+    background: darken($secondary-color, 10);
     transform: translate3d(0, 100%, 0);
     @include easeOut;
 
@@ -125,6 +134,9 @@ $background-opacity: 0.6;
       background: url(/dist/img/portrait.jpg);
       border-radius: 50%;
       border: solid 3px $secondary-color;
+
+      //animation
+      //animation-duration: 1s;
     }
   }
 
@@ -174,7 +186,7 @@ $background-opacity: 0.6;
 body {
   @include background;
   background: $primary-color;
-  color: #334652;
+  color: #475863;
   height: 100%;
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -195,6 +207,10 @@ h3 {
     position: relative;
     padding: 0;
     margin: 0;
+
+    //animation
+    animation-duration: 5s;
+    animation-delay: 0.5s;
   }
 
   &.sm-heading {
@@ -203,6 +219,10 @@ h3 {
     //background: rgba(lighten($secondary-color, 2), 0.3);
     position: relative;
     text-align: center;
+
+    //animation
+    animation-duration: 3s;
+    animation-delay: 1s;
   }
 }
 
@@ -234,7 +254,7 @@ main {
 
   .icons {
     margin-top: 1rem;
-    position: fixed;
+    position: absolute;
     bottom: 2rem;
     left: 2rem;
 
@@ -245,6 +265,16 @@ main {
         color: $secondary-color;
         @include easeOut(); // @include always for using mixin
       }
+    }
+
+    .fa-linkedin {
+      animation-duration: 1s;
+      animation-delay: 3.5s;
+    }
+
+    .fa-github {
+      animation-duration: 1s;
+      animation-delay: 3s;
     }
   }
 
@@ -301,7 +331,7 @@ main {
 
   img {
     width: 100%;
-    border: 3px #f8f8f8 solid;
+    border: 3px #34afaa solid;
 
     &:hover {
       opacity: 0.5;
@@ -311,27 +341,28 @@ main {
   }
 }
 
-//COMTACT PAGE
+//CONTACT PAGE
 .boxes {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  align-items: center;
+  align-items: centar;
   margin-top: 1rem;
 
   div {
     font-size: 2rem;
-    border: 3px #f8f8f8 solid;
+    border: 3px #34afaa solid;
     padding: 1.5rem 2.5rem;
     margin-bottom: 3rem;
     @include easeOut;
 
     &:hover {
       padding: 0.5rem 1.5rem;
+      border-radius: 10px;
       background: $secondary-color;
       color: set-text-color($secondary-color);
       span {
-        color: darken($primary-color, 10);
+        color: $primary-color;
       }
     }
   }
@@ -346,7 +377,7 @@ main {
 
   &:hover {
     background: $secondary-color;
-    color: set-text-color ($secondary-color);
+    //color: set-text-color ($secondary-color);
   }
 }
 
@@ -354,14 +385,22 @@ main {
 
 .btn-dark {
   @extend .btn;
-  background: darken($primary-color, 50);
-  color: #f8f8f8;
+  background: darken($primary-color, 2);
+  color: $secondary-color;
+
+  &:hover {
+    color: $primary-color;
+  }
 }
 
 .btn-light {
   @extend .btn;
-  background: lighten($primary-color, 50);
-  color: $primary-color;
+  background: #475863;
+  color: $secondary-color;
+
+  &:hover {
+    color: $primary-color;
+  }
 }
 
 #main-footer {

@@ -4,12 +4,15 @@
   top: 35px;
   cursor: pointer;
   transition: all 0.5s ease-out;
-  z-index: 4; }
+  z-index: 4;
+  animation-duration: 4s;
+  animation-delay: 5s;
+  animation-iteration-count: 4; }
   .menu-btn .btn-line {
     width: 28px;
     height: 3px;
     margin: 0 0 5px 0;
-    background: #f8f8f8;
+    background: #227471;
     transition: all 0.5s ease-out;
     z-index: 4; }
   .menu-btn.close {
@@ -25,7 +28,6 @@
   position: fixed;
   top: 0;
   width: 100%;
-  opacity: 0.9;
   visibility: hidden;
   z-index: 2; }
   .menu.show {
@@ -42,14 +44,15 @@
   .menu-nav {
     margin: 0;
     padding: 0;
-    background: #4662ae;
+    background: #122223;
+    opacity: 0.9;
     list-style: none;
     transform: translate3d(0, -100%, 0);
     transition: all 0.5s ease-out; }
     .menu-nav.show {
       transform: translate3d(0, 0, 0); }
   .menu-branding {
-    background: #546fba;
+    background: #288884;
     transform: translate3d(0, 100%, 0);
     transition: all 0.5s ease-out; }
     .menu-branding.show {
@@ -59,14 +62,14 @@
       height: 250px;
       background: url(/dist/img/portrait.jpg);
       border-radius: 50%;
-      border: solid 3px #f5ca00; }
+      border: solid 3px #34afaa; }
   .menu .nav-items {
     transform: translate3d(600px, 0, 0);
     transition: all 0.5s ease-out; }
     .menu .nav-items.show {
       transform: translate3d(0, 0, 0); }
     .menu .nav-items.current > a {
-      color: #f5ca00; }
+      color: #34afaa; }
   .menu .nav-link {
     display: inline-block;
     position: relative;
@@ -78,7 +81,7 @@
     text-decoration: none;
     transition: all 0.5s ease-out; }
     .menu .nav-link:hover {
-      color: #f5ca00; }
+      color: #34afaa; }
 
 .nav-items:nth-child(1) {
   transition-delay: 0.1s; }
@@ -96,25 +99,28 @@
   box-sizing: border-box; }
 
 body {
-  background: #546fba;
-  color: #334652;
+  background: #1b3234;
+  color: #475863;
   height: 100%;
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.5;
   z-index: -1; }
   body#bg-img {
-    background: url(/dist/img/background.jpg);
+    background: url(/dist/img/background.png);
     background-attachment: fixed;
-    background-size: cover; }
+    background-repeat: no-repeat;
+    background-size: 500px 300px;
+    background-position: center;
+    background-blend-mode: multiply;
+    z-index: 4; }
     body#bg-img .overlay {
       position: absolute;
       top: 0;
       right: 0;
       width: 100%;
       height: 100%;
-      z-index: -1;
-      background: rgba(84, 111, 186, 0.6); }
+      z-index: -1; }
 
 h1,
 h2,
@@ -128,14 +134,18 @@ h3 {
     text-align: center;
     position: relative;
     padding: 0;
-    margin: 0; }
+    margin: 0;
+    animation-duration: 5s;
+    animation-delay: 0.5s; }
   h1.sm-heading,
   h2.sm-heading,
   h3.sm-heading {
     margin-bottom: 2rem;
     padding: 0;
     position: relative;
-    text-align: center; }
+    text-align: center;
+    animation-duration: 3s;
+    animation-delay: 1s; }
 
 a {
   color: #334652;
@@ -147,21 +157,27 @@ header {
   width: 100%; }
 
 .text-secondary {
-  color: #f5ca00; }
+  color: #34afaa; }
 
 main {
   padding: 4rem;
   min-height: calc(100vh-60px); }
   main .icons {
     margin-top: 1rem;
-    position: fixed;
+    position: absolute;
     bottom: 2rem;
     left: 2rem; }
     main .icons a {
       padding: 0.4rem; }
       main .icons a:hover {
-        color: #f5ca00;
+        color: #34afaa;
         transition: all 0.5s ease-out; }
+    main .icons .fa-linkedin {
+      animation-duration: 1s;
+      animation-delay: 3.5s; }
+    main .icons .fa-github {
+      animation-duration: 1s;
+      animation-delay: 3s; }
   main#home {
     overflow: hidden; }
 
@@ -174,7 +190,7 @@ main {
     grid-area: bioimage;
     margin: auto;
     border-radius: 50%;
-    border: .about-info .bio-image #f5ca00 3px solid; }
+    border: .about-info .bio-image #34afaa 3px solid; }
   .about-info .bio {
     grid-area: bio;
     font-size: 1.5rem; }
@@ -185,9 +201,9 @@ main {
   .about-info .job-3 {
     grid-area: job3; }
   .about-info .job {
-    background: #667ec1;
+    background: #244245;
     padding: 0.5rem;
-    border-bottom: #f5ca00 5px solid; }
+    border-bottom: #34afaa 5px solid; }
 
 .projects {
   display: grid;
@@ -195,30 +211,31 @@ main {
   grid-template-columns: repeat(3, 1fr); }
   .projects img {
     width: 100%;
-    border: 3px #f8f8f8 solid; }
+    border: 3px #34afaa solid; }
     .projects img:hover {
       opacity: 0.5;
-      border-color: #f5ca00;
+      border-color: #34afaa;
       transition: all 0.5s ease-out; }
 
 .boxes {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  align-items: center;
+  align-items: centar;
   margin-top: 1rem; }
   .boxes div {
     font-size: 2rem;
-    border: 3px #f8f8f8 solid;
+    border: 3px #34afaa solid;
     padding: 1.5rem 2.5rem;
     margin-bottom: 3rem;
     transition: all 0.5s ease-out; }
     .boxes div:hover {
       padding: 0.5rem 1.5rem;
-      background: #f5ca00;
-      color: set-text-color(#f5ca00); }
+      border-radius: 10px;
+      background: #34afaa;
+      color: set-text-color(#34afaa); }
       .boxes div:hover span {
-        color: #3f589c; }
+        color: #1b3234; }
 
 .btn, .btn-dark, .btn-light {
   display: block;
@@ -226,22 +243,25 @@ main {
   border: 0;
   margin-bottom: 0.3rem; }
   .btn:hover, .btn-dark:hover, .btn-light:hover {
-    background: #f5ca00;
-    color: set-text-color #f5ca00; }
+    background: #34afaa; }
 
 .btn-dark {
-  background: #04060b;
-  color: #f8f8f8; }
+  background: #182c2d;
+  color: #34afaa; }
+  .btn-dark:hover {
+    color: #1b3234; }
 
 .btn-light {
-  background: white;
-  color: #546fba; }
+  background: #475863;
+  color: #34afaa; }
+  .btn-light:hover {
+    color: #1b3234; }
 
 #main-footer {
   text-align: center;
   padding: 1rem;
-  background: #3f589c;
-  color: set-text-color(#546fba);
+  background: #0a1212;
+  color: set-text-color(#1b3234);
   height: 60px; }
 
 @media screen and (min-width: 1171px) {
