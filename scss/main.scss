@@ -1,513 +1,862 @@
-$primary-color: #1b3234;
-$secondary-color: #34afaa;
-$show-home-image: true;
-$home-image: url(/dist/img/background.png);
-$background-opacity: 0.3;
+$primary-color: rgb(205, 204, 223);
+$secondary-color: #6C63FF;
+$show-home-image: false;
+//$home-image: url(/dist/img/background.png);
+//$background-opacity: 0.3;
 
 @mixin easeOut {
-  transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
 }
 
-@mixin background {
-  @if $show-home-image {
-    &#bg-img {
-      background: $home-image;
-      background-attachment: fixed;
-      background-repeat: no-repeat;
-      background-size: 500px 300px;
-      background-position: center;
-      background-blend-mode: multiply;
-      z-index: 4;
+// @mixin background {
+//     @if $show-home-image {
+//         &#bg-img {
+//             background: $home-image;
+//             background-attachment: fixed;
+//             background-repeat: no-repeat;
+//             background-size: 500px 300px;
+//             background-position: center;
+//             background-blend-mode: multiply;
+//             z-index: 4;
 
-      .overlay {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        //background: rgba($primary-color, $background-opacity);
-        //background: $primary-color;
-      }
-    }
-  }
-}
+//             .overlay {
+//                 position: absolute;
+//                 top: 0;
+//                 right: 0;
+//                 width: 100%;
+//                 height: 100%;
+//                 z-index: -1;
+//                 //background: rgba($primary-color, $background-opacity);
+//                 //background: $primary-color;
+//             }
+//         }
+//     }
+// }
 
 // Menu Button
 
 .menu-btn {
-  position: absolute;
-  // z-index: 3;
-  right: 35px;
-  top: 35px;
-  cursor: pointer;
-  @include easeOut;
-  z-index: 4;
-  animation-duration: 4s;
-  animation-delay: 5s;
-  animation-iteration-count: 4;
-
-  .btn-line {
-    width: 28px;
-    height: 3px;
-    margin: 0 0 5px 0;
-    background: darken($secondary-color, 15);
+    position: absolute;
+    // z-index: 3;
+    right: 35px;
+    top: 35px;
+    cursor: pointer;
     @include easeOut;
-    z-index: 4;
-  }
-
-  // Rotate Into X with menu lines
-  &.close {
-    transform: rotate(180deg);
+    z-index: 6;
+    animation-duration: 2s;
+    animation-delay: 4.5s;
+    //animation-iteration-count: 3;
 
     .btn-line {
-      // line 1 - rotate
-      &:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-      }
-      // line 2 - hide
-      &:nth-child(2) {
-        opacity: 0;
-      }
-      // line 3 - rotate
-      &:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -6px);
-      }
+        width: 28px;
+        height: 3px;
+        margin: 0 0 5px 0;
+        background: darken(#f2f2f2, 15);
+        @include easeOut;
+        z-index: 6;
     }
-  }
+
+    // Rotate Into X with menu lines
+    &.close {
+        transform: rotate(180deg);
+
+        .btn-line {
+
+            // line 1 - rotate
+            &:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            // line 2 - hide
+            &:nth-child(2) {
+                opacity: 0;
+            }
+
+            // line 3 - rotate
+            &:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+        }
+    }
 }
 
 // Menu overlay
 .menu {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  //opacity: 0.9;
-  visibility: hidden;
-  z-index: 2;
-
-  &.show {
-    visibility: visible;
-  }
-
-  &-branding,
-  &-nav {
-    display: flex;
-    flex-flow: column wrap;
-    align-items: center;
-    justify-content: center;
-    float: left;
-    width: 50%;
-    height: 100vh;
-    overflow: hidden;
-  }
-  //Nav bar side
-  &-nav {
-    margin: 0;
-    padding: 0;
-    background: darken($primary-color, 5);
-    opacity: 0.9;
-    list-style: none;
-    transform: translate3d(0, -100%, 0);
-    @include easeOut;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    //opacity: 0.9;
+    visibility: hidden;
+    z-index: 5;
 
     &.show {
-      // Slides in from the top
-      transform: translate3d(0, 0, 0);
-    }
-  }
-
-  //Branding Side
-  &-branding {
-    background: darken($secondary-color, 10);
-    transform: translate3d(0, 100%, 0);
-    @include easeOut;
-
-    &.show {
-      //Slide in from the bottom
-      transform: translate3d(0, 0, 0);
+        visibility: visible;
     }
 
-    .portrait {
-      width: 250px;
-      height: 250px;
-      background: url(/dist/img/portrait.jpg);
-      border-radius: 50%;
-      border: solid 3px $secondary-color;
+    &-branding,
+    &-nav {
+        display: flex;
+        flex-flow: column wrap;
+        align-items: center;
+        justify-content: center;
+        float: left;
+        width: 50%;
+        height: 100vh;
+        overflow: hidden;
+        z-index: 5;
 
-      //animation
-      //animation-duration: 1s;
-    }
-  }
-
-  .nav-items {
-    transform: translate3d(600px, 0, 0);
-    @include easeOut;
-
-    &.show {
-      //Slide from the right
-      transform: translate3d(0, 0, 0);
     }
 
-    &.current > a {
-      color: $secondary-color;
-    }
-  }
+    //Nav bar side
+    &-nav {
+        margin: 0;
+        padding: 0;
+        background: darken($primary-color, 55);
+        opacity: 0.9;
+        //filter: blur(8px);
+        //-webkit-filter: blur(8px);
+        list-style: none;
+        transform: translate3d(0, -100%, 0);
+        @include easeOut;
+        z-index: 5;
 
-  .nav-link {
-    display: inline-block;
-    position: relative;
-    font-size: 30px;
-    text-transform: uppercase;
-    padding: 1rem 0;
-    font-weight: 300;
-    color: #f8f8f8;
-    text-decoration: none;
-    @include easeOut;
-
-    &:hover {
-      color: $secondary-color;
+        &.show {
+            // Slides in from the top
+            transform: translate3d(0, 0, 0);
+        }
     }
-  }
+
+    //Branding Side
+    &-branding {
+        background: darken($primary-color, 60);
+        transform: translate3d(0, 100%, 0);
+        @include easeOut;
+        z-index: 5;
+
+        &.show {
+            //Slide in from the bottom
+            transform: translate3d(0, 0, 0);
+        }
+
+        .portrait {
+            width: 250px;
+            height: 250px;
+            background: url(/dist/img/portrait.jpg);
+            border-radius: 50%;
+            border: solid 3px $secondary-color;
+
+            //animation
+            //animation-duration: 1s;
+        }
+    }
+
+    .nav-items {
+        transform: translate3d(600px, 0, 0);
+        @include easeOut;
+        z-index: 5;
+
+        &.show {
+            //Slide from the right
+            transform: translate3d(0, 0, 0);
+        }
+
+        &.current>a {
+            color: $secondary-color;
+        }
+    }
+
+    .nav-link {
+        display: inline-block;
+        position: relative;
+        font-size: 30px;
+        text-transform: uppercase;
+        padding: 1rem 0;
+        font-weight: 300;
+        color: #f8f8f8;
+        text-decoration: none;
+        @include easeOut;
+        z-index: 5;
+
+        &:hover {
+            color: $secondary-color;
+        }
+    }
 }
 
 // Delay each nav item slide bar 0.1s
 @for $x from 1 through 4 {
-  .nav-items:nth-child(#{$x}) {
-    transition-delay: $x * 0.1s;
-    //for each item to slides in seperately, one at a time
-  }
+    .nav-items:nth-child(#{$x}) {
+        transition-delay: $x * 0.1s;
+        //for each item to slides in seperately, one at a time
+    }
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  @include background;
-  background: $primary-color;
-  color: #475863;
-  height: 100%;
-  margin: 0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.5;
-  z-index: -1;
+    //@include background;
+    background: #37354b;
+    color: rgb(204, 204, 204);
+    height: 100%;
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.5;
+    z-index: -1;
+    display: grid;
+    justify-items: center;
+    align-items: center;
 }
+
 //Headings
 h1,
 h2,
 h3 {
-  margin: 0;
-  font-weight: 400;
-
-  &.lg-heading {
-    // &.lg heading --> h1.lg-heading, h2.lg-heading etc
-    font-size: 7rem; // 6 * defualt px value (here's 16px)
-    text-align: center;
-    position: relative;
-    padding: 0;
     margin: 0;
+    font-weight: 400;
 
-    //animation
-    animation-duration: 5s;
-    animation-delay: 0.5s;
-  }
+    &.lg-heading {
+        // &.lg heading --> h1.lg-heading, h2.lg-heading etc
+        font-size: 7rem; // 6 * defualt px value (here's 16px)
+        text-align: center;
+        position: relative;
+        padding: 0;
+        margin: 0;
 
-  &.sm-heading {
-    margin-bottom: 2rem;
-    padding: 0;
-    //background: rgba(lighten($secondary-color, 2), 0.3);
-    position: relative;
-    text-align: center;
+        //animation
+        animation-duration: 5s;
+        animation-delay: 6s;
+    }
 
-    //animation
-    animation-duration: 3s;
-    animation-delay: 1s;
-  }
+    &.sm-heading {
+        margin-bottom: 2rem;
+        padding: 0;
+        //background: rgba(lighten($secondary-color, 2), 0.3);
+        position: relative;
+        text-align: center;
+
+        //animation
+        animation-duration: 4s;
+        animation-delay: 4s;
+    }
+
+    &.lg-heading-about {
+        font-size: 8rem;
+        position: relative;
+        align-self: end;
+        //left: 15px;
+        //z-index: -2;
+        padding: 0;
+        margin: 0;
+
+        //animation
+        animation-duration: 2s;
+        //animation-delay: 0.5s;
+    }
+
+    &.lg-heading-about2 {
+        position: relative;
+        margin: 0;
+        //justify-self: center;
+        align-self: center;
+        //left: 10%;
+        //top: 260px;
+        font-size: 11rem;
+        // color: #6C63FF;
+
+
+        //animation
+        animation-duration: 1.5s;
+        //animation-delay: 0.1s;
+
+    }
+
 }
 
 //Links
 
 a {
-  color: #334652;
-  text-decoration: none;
+    color: darken(#f2f2f2, 15);
+    text-decoration: none;
 }
 
 //Headers
 
 header {
-  position: fixed;
-  z-index: 2;
-  width: 100%;
+    position: fixed;
+    z-index: 2;
+    width: 100%;
 }
 
 .text-secondary {
-  color: $secondary-color;
+    color: $secondary-color;
 }
 
 //Main
 
 main {
-  padding: 4rem;
-  //height: 100%;
-  min-height: calc(100vh-60px); //use calc to make a STICKY FOOTER
+    padding: 4rem;
+    //height: 100%;
+    min-height: calc(100vh-60px); //use calc to make a STICKY FOOTER
 
-  .icons {
-    margin-top: 1rem;
-    position: absolute;
-    bottom: 2rem;
-    left: 2rem;
+    .icons {
+        margin-top: 1rem;
+        position: absolute;
+        bottom: 2rem;
+        left: 2rem;
 
-    a {
-      padding: 0.4rem;
+        a {
+            padding: 0.4rem;
 
-      &:hover {
-        color: $secondary-color;
-        @include easeOut(); // @include always for using mixin
-      }
+            &:hover {
+                color: $secondary-color;
+                @include easeOut(); // @include always for using mixin
+            }
+        }
+
+        .fa-linkedin {
+            animation-duration: 2s;
+            animation-delay: 4.5s;
+        }
+
+        .fa-github {
+            animation-duration: 2s;
+            animation-delay: 4s;
+        }
+
+
     }
 
-    .fa-linkedin {
-      animation-duration: 1s;
-      animation-delay: 3.5s;
+    .cv {
+        margin-top: 1rem;
+        position: absolute;
+        bottom: 2rem;
+        right: 2rem;
+
+        a {
+            padding: 0.4rem;
+
+            &:hover {
+                color: $secondary-color;
+                @include easeOut(); // @include always for using mixin
+            }
+        }
+
+        .fa-file-pdf {
+            animation-duration: 2s;
+            animation-delay: 4s;
+        }
     }
 
-    .fa-github {
-      animation-duration: 1s;
-      animation-delay: 3s;
+    &#home {
+        overflow: hidden; // never to have scrollbars
+        //h1 {
+        // each h1 with the id='home'
+        //margin-top: 20vh; // vh - view point height
     }
-  }
-
-  &#home {
-    overflow: hidden; // never to have scrollbars
-    //h1 {
-    // each h1 with the id='home'
-    //margin-top: 20vh; // vh - view point height
-  }
 }
+
+//ABOUT PAGE
+
 
 .about-info {
-  display: grid;
-  grid-gap: 30px;
-  grid-template-areas:
-    "bioimage bio bio"
-    "job1 job2 job3";
-  grid-template-columns: repeat(3, 1fr);
+    //top: 100px;
+    display: grid;
+    grid-gap: 30px;
+    grid-template-areas:
+        "heading heading2"
+        "bio bio"
+        "job1 job2 "
+        "job3 job4 "
+        "job5 job6 ";
+    //grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 25% auto;
 
-  .bio-image {
-    grid-area: bioimage;
-    margin: auto;
-    border-radius: 50%;
-    border: &$secondary-color 3px solid;
-  }
+    .lg-heading-about {
+        grid-area: heading;
+        align-self: stretch;
+        margin: 0;
+    }
 
-  .bio {
-    grid-area: bio;
-    font-size: 1.5rem;
-  }
-  .job-1 {
-    grid-area: job1;
-  }
-  .job-2 {
-    grid-area: job2;
-  }
-  .job-3 {
-    grid-area: job3;
-  }
+    .lg-heading-about2 {
+        grid-area: heading2;
+        color: #6C63FF;
+        //font-size: 10rem;
+        margin: 0;
+        padding: 0;
 
-  .job {
-    background: lighten($primary-color, 5);
-    padding: 0.5rem;
-    border-bottom: $secondary-color 5px solid;
-  }
+        //animation
+        animation-duration: 3s;
+        animation-delay: .9s;
+    }
+
+    .bio-image {
+        grid-area: bioimage;
+        grid-row-start: 2;
+
+        margin: auto;
+        border-radius: 50%;
+        border: &$secondary-color 3px solid;
+        z-index: -1;
+
+        //animation
+        animation-duration: 3s;
+        animation-delay: 0.1s;
+
+    }
+
+    .bio {
+        grid-area: bio;
+        font-size: 1.5rem;
+        grid-row-start: 2;
+        grid-row-end: 3;
+
+        //animation
+        animation-duration: 3s;
+        animation-delay: 4s;
+    }
+
+    .job-1 {
+        grid-area: job1;
+        //justify-items: center;
+        //align-self: start;
+        //justify-self: left;
+        //grid-gap: 9px;
+        //grid-template-columns: 33% auto;
+        grid-row-start: 3;
+        //background: darken($primary-color, 40);
+        text-align: center;
+        font-size: 30px;
+        //padding: 0.5rem;
+        // margin-top: auto;
+        // margin-bottom: auto;
+        //border-top: $secondary-color 2px solid;
+        border-bottom: $secondary-color 5px solid;
+
+        h6 {
+            margin: 2rem;
+        }
+
+        //animation
+        animation-delay: 5s;
+        animation-duration: 2s;
+    }
+
+
+
+
+
 }
+
+.job-2 {
+    grid-area: job2;
+    //justify-items: end;
+    grid-row-start: 3;
+    //background: darken($primary-color, 60);
+    border-bottom: $secondary-color 5px solid;
+    // margin-top: auto;
+    // margin-bottom: auto;
+
+    h6 {
+        margin: 2rem;
+    }
+
+    .role {
+        font-size: 25px;
+    }
+
+    //animation
+    animation-delay: 7s;
+    animation-duration: 1s;
+
+}
+
+.role {
+    font-size: 25px;
+}
+
+
+
+
+.job-3 {
+    grid-area: job3;
+    grid-row-start: 4;
+    text-align: center;
+    font-size: 30px;
+    border-bottom: $secondary-color 5px solid;
+
+    h6 {
+        margin: 2rem;
+    }
+
+    //animation
+    animation-delay: 9s;
+    animation-duration: 3s;
+
+}
+
+.job-4 {
+    grid-area: job4;
+    grid-row-start: 4;
+    border-bottom: $secondary-color 5px solid;
+
+    .role {
+        font-size: 25px;
+    }
+
+    h6 {
+        margin: 2rem;
+    }
+
+    //animation
+    animation-delay: 10s;
+    animation-duration: 1s;
+
+}
+
+.job-5 {
+    grid-area: job5;
+    grid-row-start: 5;
+    text-align: center;
+    font-size: 30px;
+    border-bottom: $secondary-color 5px solid;
+
+    h6 {
+        margin: 2rem;
+    }
+
+}
+
+.job-6 {
+    grid-area: job6;
+    grid-row-start: 5;
+    border-bottom: $secondary-color 5px solid;
+
+    .role {
+        font-size: 25px;
+    }
+
+    h6 {
+        margin: 2rem;
+    }
+
+}
+
+.job {
+    //background: darken($primary-color, 60);
+    padding: 0.5rem;
+    //border-bottom: $secondary-color 5px solid;
+}
+
+
+
+
 
 //WORK PROJECTS
 
 .projects {
-  display: grid;
-  grid-gap: 0.7rem;
-  grid-template-columns: repeat(3, 1fr);
+    display: grid;
+    grid-gap: 0.7rem;
+    grid-template-columns: repeat(3, 1fr);
 
-  img {
-    width: 100%;
-    border: 3px #34afaa solid;
+    img {
+        width: 100%;
+        border: 3px #34afaa solid;
 
-    &:hover {
-      opacity: 0.5;
-      border-color: $secondary-color;
-      @include easeOut;
+        &:hover {
+            opacity: 0.5;
+            border-color: $secondary-color;
+            @include easeOut;
+        }
     }
-  }
 }
 
 //CONTACT PAGE
 .boxes {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: centar;
-  margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: centar;
+    margin-top: 1rem;
 
-  div {
-    font-size: 2rem;
-    border: 3px #34afaa solid;
-    padding: 1.5rem 2.5rem;
-    margin-bottom: 3rem;
-    @include easeOut;
+    div {
+        font-size: 2rem;
+        border: 2px #6C63FF solid;
+        padding: 1.5rem 2.5rem;
+        margin: 1rem;
+        @include easeOut;
 
-    &:hover {
-      padding: 0.5rem 1.5rem;
-      border-radius: 10px;
-      background: $secondary-color;
-      color: set-text-color($secondary-color);
-      span {
-        color: $primary-color;
-      }
+        &:hover {
+            padding: 1.5rem 1.5rem;
+            border-radius: 10px;
+            background: darken($primary-color, 50);
+            color: set-text-color($secondary-color);
+
+            span {
+                color: $primary-color;
+            }
+        }
     }
-  }
 }
+
 // Button styles
 
 .btn {
-  display: block; //to be one over the other, but use INLINE-BLOCK to be displayed as one next to the other (styling depends if the image is wide enough to have 2, pne next to each other)
-  padding: 0.5rem 1rem;
-  border: 0;
-  margin-bottom: 0.3rem;
+    display: block; //to be one over the other, but use INLINE-BLOCK to be displayed as one next to the other (styling depends if the image is wide enough to have 2, pne next to each other)
+    padding: 0.5rem 1rem;
+    border: 0;
+    margin-bottom: 0.3rem;
 
-  &:hover {
-    background: $secondary-color;
-    //color: set-text-color ($secondary-color);
-  }
+    &:hover {
+        background: $secondary-color;
+        //color: set-text-color ($secondary-color);
+    }
 }
 
 //now let's extend this .btn class to .btn-light and .btn-dark
 
 .btn-dark {
-  @extend .btn;
-  background: darken($primary-color, 2);
-  color: $secondary-color;
+    @extend .btn;
+    background: darken($primary-color, 2);
+    color: $secondary-color;
 
-  &:hover {
-    color: $primary-color;
-  }
+    &:hover {
+        color: $primary-color;
+    }
 }
 
 .btn-light {
-  @extend .btn;
-  background: #475863;
-  color: $secondary-color;
+    @extend .btn;
+    background: #475863;
+    color: $secondary-color;
 
-  &:hover {
-    color: $primary-color;
-  }
+    &:hover {
+        color: $primary-color;
+    }
 }
 
-#main-footer {
-  text-align: center;
-  padding: 1rem;
-  background: darken($primary-color, 10);
-  color: set-text-color($primary-color);
-  height: 60px;
-  //Checkout .main styling to see how we made STICKY FOOTER
+// #main-footer {
+//     text-align: center;
+//     padding: 1rem;
+//     background: darken($primary-color, 10);
+//     color: set-text-color($primary-color);
+//     height: 60px;
+//     //Checkout .main styling to see how we made STICKY FOOTER
+// }
+
+
+///WORK
+.slider {
+
+    *,
+    *:after,
+    *:before {
+        padding: 0;
+        margin: 0;
+        font-family: Arial;
+    }
+
+
+    ul.tcUl {
+        position: apsolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        list-style: none;
+        width: 1000px;
+        height: 800px;
+        border-radius: 3px;
+        overflow: hidden;
+        box-shadow: 1px 1px 3px 1px;
+        //z-index: -5;
+    }
+
+
+    li.tcList {
+        position: relative;
+        width: 290px;
+        height: 800px;
+        float: left;
+        border-left: 1px solid rgb(63, 61, 61);
+        -webkit-transition: all 0.7s;
+        -moz-transition: all 0.7s;
+        transition: all 0.7s;
+        box-shadow: -2px 0 10px 2px;
+        //z-index: -5;
+    }
+
+    ul.tcUl li.tcList:first-child {
+        border: none;
+        //z-index: -5;
+
+    }
+
+    span.tcTitle {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        width: 50%;
+        color: white;
+        white-space: nowrap;
+        padding: 20px;
+        background: -moz-linear-gradient(left, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 100%);
+        /* FF3.6+ */
+        background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 100%);
+        /* Chrome10+,Safari5.1+ */
+        //z-index: -5;
+
+
+    }
+
+    img {
+        width: auto;
+        height: auto;
+        //z-index: -5;
+
+    }
+
+    ul.tcUl:hover li.tcList {
+        width: 170px;
+        // /z-index: -5;
+
+    }
+
+
+    ul.tcUl li.tcList:hover {
+        width: 590px;
+        //z-index: -5;
+
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 //Media Query Mixins
 @mixin mediaSm {
-  @media screen and (max-width: 500px) {
-    @content;
-  }
+    @media screen and (max-width: 500px) {
+        @content;
+    }
 }
+
 @mixin mediaMd {
-  @media screen and (max-width: 768px) {
-    @content;
-  }
+    @media screen and (max-width: 768px) {
+        @content;
+    }
 }
+
 @mixin mediaLg {
-  @media screen and (min-width: 769px) and (max-width: 1170px) {
-    @content;
-  }
+    @media screen and (min-width: 769px) and (max-width: 1170px) {
+        @content;
+    }
 }
+
 @mixin mediaXl {
-  @media screen and (min-width: 1171px) {
-    @content;
-  }
+    @media screen and (min-width: 1171px) {
+        @content;
+    }
 }
 
 //Widescreens
 @include mediaXl {
-  .projects {
-    grid-template-columns: repeat(4, 1fr);
-  }
+    .projects {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 //Desktops and Laptops
 @include mediaLg {
-  .projects {
-    grid-template-columns: repeat(3, 1fr);
-  }
+    .projects {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 //Tablets and Netbooks    -- IMPORTANT: THIS MOBILE SECTION MUST BE AT THE END OF MAIN.SCSS TO BE PROPERLY DISPLAYED!
 @include mediaMd {
-  main {
-    align-items: center;
-    text-align: center;
+    main {
+        align-items: center;
+        text-align: center;
 
-    .lg-heading {
-      line-height: 1;
-      margin-bottom: 1rem;
+        .lg-heading {
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
     }
-  }
 
-  ul.menu-nav,
-  div.menu-branding {
-    float: none;
-    width: 100%;
-    min-height: 0;
+    ul.menu-nav,
+    div.menu-branding {
+        float: none;
+        width: 100%;
+        min-height: 0;
 
-    &.show {
-      transform: translate3d(0, 0, 0);
+        &.show {
+            transform: translate3d(0, 0, 0);
+        }
     }
-  }
 
-  .menu-nav {
-    height: 75vh;
-    transform: translate3d(-100%, 0, 0);
-    font-size: 24px;
-  }
-  .menu-branding {
-    height: 25vh;
-    transform: translate3d(100%, 0, 0);
-
-    .portrait {
-      background: url(/dist/img/portrait_small.jpg);
-      width: 150px;
-      height: 150px;
+    .menu-nav {
+        height: 75vh;
+        transform: translate3d(-100%, 0, 0);
+        font-size: 24px;
     }
-  }
 
-  .about-info {
-    grid-template-areas:
-      "bioimage"
-      "bio"
-      "job1"
-      "job2"
-      "job3";
+    .menu-branding {
+        height: 25vh;
+        transform: translate3d(100%, 0, 0);
 
-    grid-template-columns: 1fr;
-  }
-  .projects {
-    grid-template-columns: repeat(2, 1fr);
-  }
+        .portrait {
+            background: url(/dist/img/portrait_small.jpg);
+            width: 150px;
+            height: 150px;
+        }
+    }
+
+    .about-info {
+        grid-template-areas:
+            "bioimage"
+            "bio"
+            "job1"
+            "job2"
+            "job3";
+
+        grid-template-columns: 1fr;
+    }
+
+    .projects {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    svg {
+        width: 100%;
+        height: 300px;
+    }
 }
 
 //Smartphones
 @include mediaSm {
-  main#home h1 {
-    margin-top: 10vh;
-  }
-  .projects {
-    grid-template-columns: 1fr;
-  }
+    main#home h1 {
+        margin-top: 10vh;
+    }
+
+    .projects {
+        grid-template-columns: 1fr;
+    }
+
+    svg {
+        width: 100%;
+        height: 200px;
+    }
 }
